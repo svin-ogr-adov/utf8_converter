@@ -1,0 +1,43 @@
+# UTF-8 Converter API (C++17)
+
+Small, dependency-free C++17 library to **detect text encoding** and **convert files/buffers to UTF-8**.  
+Designed for Russian/Cyrillic datasets but works well for mixed ASCII + punctuation too.
+
+---
+
+## Features
+
+- Encoding detection
+  - Honors BOMs for UTF-8/16/32
+  - Heuristics for UTF-16/32 without BOM
+  - UTF-8 validator
+  - Scores several single-byte Cyrillic encodings and picks the best candidate
+
+- Conversion to UTF-8
+  - From file or in-memory buffer
+  - Write to a new file or atomically replace the original
+
+- Other
+  - No external dependencies — standard C++17 only
+  - Clear error reporting via `std::runtime_error` on I/O failures
+
+---
+
+## Supported Encodings
+
+- UTF families
+  - UTF-8 (with/without BOM)
+  - UTF-16LE / UTF-16BE (with/without BOM)
+  - UTF-32LE / UTF-32BE (with/without BOM)
+
+- Single-byte Cyrillic
+  - Windows-1251
+  - KOI8-R
+  - ISO-8859-5
+  - MacCyrillic
+
+---
+
+# build and run tests
+clang++ -std=c++17 encoding_api.cpp test_encoding_api.cpp -o test
+./test
